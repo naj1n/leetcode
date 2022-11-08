@@ -20,7 +20,7 @@ use std::rc::Rc;
 use std::cell::RefCell;
 impl Solution {
     pub fn is_balanced(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
-        pub fn dfs(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
+        fn dfs(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
             match root {
                 Some(root) => {
                     let leftH = dfs(root.borrow().left.clone());
