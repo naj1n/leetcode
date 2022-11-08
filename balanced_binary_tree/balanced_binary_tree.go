@@ -6,33 +6,34 @@
  *     Right *TreeNode
  * }
  */
- func isBalanced(root *TreeNode) bool {
-	return dfs(root) != -1
+func isBalanced(root *TreeNode) bool {
+   return dfs(root) != -1
 }
 
 func dfs(root *TreeNode) int {
    if root == nil {
-	   return 0
+       return 0
    }
-   leftHeight := dfs(root.Left)
-   rightHeight := dfs(root.Right)
-   if abs(leftHeight - rightHeight) > 1 || leftHeight == -1 || rightHeight == -1 {
-	   return -1
+   leftH := dfs(root.Left)
+   rightH := dfs(root.Right)
+
+   if leftH == -1 || rightH == -1 || abs(leftH - rightH) > 1 {
+       return -1
    }
-   return max(leftHeight, rightHeight) + 1
-   
+
+   return max(leftH, rightH) + 1
 }
 
-func max(a,b int) int {
+func max(a, b int) int {
    if a > b {
-	   return a
+       return a
    }
    return b
 }
 
 func abs(n int) int {
-   if n >= 0 {
-	   return n
+   if n > 0 {
+       return n
    }
    return -n
 }

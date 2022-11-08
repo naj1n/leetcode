@@ -20,19 +20,20 @@ use std::rc::Rc;
 use std::cell::RefCell;
 impl Solution {
     pub fn is_balanced(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
-        fn dfs(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
+        pub fn dfs(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
             match root {
                 Some(root) => {
-                    let leftHeight = dfs(root.borrow().left.clone());
-                    let rightHeight = dfs(root.borrow().right.clone());
-                    if (leftHeight - rightHeight).abs() > 1 || leftHeight == -1 || rightHeight == -1 {
+                    let leftH = dfs(root.borrow().left.clone());
+                    let rightH = dfs(root.borrow().right.clone());
+                    if leftH == -1 || rightH == -1 || (leftH - rightH).abs() > 1 {
                         return -1
                     }
-                    leftHeight.max(rightHeight) + 1
+                    leftH.max(rightH) + 1
                 }
+
                 None => 0
             }
         }
-    dfs(root) != -1
+        dfs(root) != -1
     }
 }
